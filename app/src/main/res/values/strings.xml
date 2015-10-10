@@ -7,5 +7,11 @@
     <string name="buttonB">me</string>
     <string name="buttonC">us</string>
     <string name="buttonD">...</string>
+    <string name="button_do">do</string>
+    <string name="button_me">me</string>
+    <string name="button_us">us</string>
+    <string name="button_..">...</string>
+    <string name="enterTitle">Enter title...</string>
+    <string name="enterContent">Enter content...</string>
     <string name="takePicture">Take Picture</string>
 </resources>

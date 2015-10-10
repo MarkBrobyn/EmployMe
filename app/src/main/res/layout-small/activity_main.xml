@@ -23,7 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <Button
-                android:text="Button A"
+                android:text="@string/buttonA"
                 android:layout_width="@dimen/main_button_small"
                 android:layout_height="@dimen/main_button_small"
                 android:background="@drawable/button_round"
@@ -31,12 +31,14 @@
                 android:onClick="buttonClick"
                 />
             <Button
-                android:text="Button B"
-                android:layout_width="@dimen/main_button_small"
-                android:layout_height="@dimen/main_button_small"
+                android:text="@string/button_me"
+                android:id="@+id/button_me"
+                android:layout_width="@dimen/main_button"
+                android:layout_height="@dimen/main_button"
                 android:background="@drawable/button_round"
                 android:layout_margin="@dimen/main_button_round_margin"
-                android:onClick="buttonClick"
+                android:textAllCaps="false"
+                android:textSize="24dp"
                 />
         </TableRow>
 
@@ -44,7 +46,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <Button
-                android:text="Button C"
+                android:text="@string/buttonC"
                 android:layout_width="@dimen/main_button_small"
                 android:layout_height="@dimen/main_button_small"
                 android:background="@drawable/button_round"
@@ -52,7 +54,7 @@
                 android:onClick="buttonClick"
                 />
             <Button
-                android:text="Button D"
+                android:text="@string/buttonD"
                 android:layout_width="@dimen/main_button_small"
                 android:layout_height="@dimen/main_button_small"
                 android:background="@drawable/button_round"

@@ -3,7 +3,8 @@
     <dimen name="activity_horizontal_margin">12dp</dimen>
     <dimen name="activity_vertical_margin">12dp</dimen>
     <dimen name="main_button">120dp</dimen>
-    <dimen name="main_button_large">180dp</dimen>
+    <dimen name="main_button_large">156dp</dimen>
     <dimen name="main_button_small">96dp</dimen>
     <dimen name="main_button_round_margin">12dp</dimen>
+    <dimen name="main_button_width">120dp</dimen>
 </resources>

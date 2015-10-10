@@ -1,5 +1,6 @@
 package brobyn.com.employme;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 
 import java.io.IOException;
+import android.database.SQLException;
 
 import static android.widget.Toast.LENGTH_SHORT;
 import static android.widget.Toast.makeText;
@@ -36,16 +38,25 @@ public class MainActivity extends AppCompatActivity {
         if(DEV_MODE)
             makeText(getApplicationContext(), view.getTag().toString(), LENGTH_SHORT).show();
 
-       /*
-        DataBaseHelper myDbHelper=new DataBaseHelper(this);
+
+        //DataBaseHelper myDbHelper=new DataBaseHelper(this);
+/*
         try {
             myDbHelper.createDataBase();
         }
         catch (IOException ioe) {
             throw new Error("Unable to create database");
         }
-      */
-
+*/
+        Button button_me=(Button)findViewById(R.id.button_me);
+        button_me.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                //status.setText("button_add_item");
+                //Intent i=new Intent("EditorActivity");
+                Intent i = new Intent(MainActivity.this, SQLiteActivity.class);
+                startActivity(i);
+            }
+        });
 
 
     }
