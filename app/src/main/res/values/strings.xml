@@ -1,6 +1,11 @@
 <resources>
-    <string name="app_name">EmployMe</string>
+    <string name="app_name">Employ Me</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="buttonA">do</string>
+    <string name="buttonB">me</string>
+    <string name="buttonC">us</string>
+    <string name="buttonD">...</string>
+    <string name="takePicture">Take Picture</string>
 </resources>
