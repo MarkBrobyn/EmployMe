@@ -1,0 +1,87 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    >
+
+
+    <TextView
+        android:id="@+id/edit_item_datetime"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        />
+
+    <EditText
+        android:id="@+id/edit_item_title"
+        android:hint="@string/enterTitle"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_width="fill_parent"
+        android:maxLines="1"
+        android:gravity="top"
+        android:editable="true"
+        android:lines="1"
+        android:maxHeight="50dp"
+        android:fadeScrollbars="false"
+        android:nestedScrollingEnabled="false" />
+
+    <EditText
+        android:id="@+id/edit_item_content"
+        android:hint="@string/enterContent"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="8"
+        android:gravity="top"
+        android:minHeight="150dp" />
+
+
+
+
+    <TableLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        >
+
+        <TableRow android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <Button
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="Save"
+                android:id="@+id/button_edit_item_save"
+                android:layout_gravity="left" />
+            <Button
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="Cancel"
+                android:id="@+id/button_edit_item_cancel"
+                android:layout_gravity="right" />
+
+        </TableRow>
+
+        <TableRow android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <Button
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="Send"
+                android:id="@+id/button_edit_item_send"
+                android:layout_gravity="left"
+                />
+            <Button
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="Delete"
+                android:id="@+id/button_edit_item_delete"
+                android:layout_gravity="right" />
+        </TableRow>
+
+
+    </TableLayout>
+</LinearLayout>

@@ -11,7 +11,7 @@
     <string name="button_me">me</string>
     <string name="button_us">us</string>
     <string name="button_..">...</string>
-    <string name="enterTitle">Enter title...</string>
-    <string name="enterContent">Enter content...</string>
+    <string name="enterTitle">Action...</string>
+    <string name="enterContent">Reflection...</string>
     <string name="takePicture">Take Picture</string>
 </resources>

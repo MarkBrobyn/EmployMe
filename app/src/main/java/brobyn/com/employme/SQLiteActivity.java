@@ -28,7 +28,7 @@ import static android.widget.Toast.makeText;
 public class SQLiteActivity extends AppCompatActivity {
 
     TextView status;
-
+    private boolean DEV_MODE=false;
 
     //private SQLiteDatabase db;
     DataBaseHelper db=new DataBaseHelper(this); //
@@ -66,7 +66,7 @@ public class SQLiteActivity extends AppCompatActivity {
         Item item;
         String itemDate="";
 
-        makeText(getApplicationContext(), "SQLite\nShow All", LENGTH_LONG).show();
+if(DEV_MODE)makeText(getApplicationContext(), "SQLite\nShow All", LENGTH_LONG).show();
 
         db.open();
         Cursor cursor = db.showAll();
@@ -95,8 +95,8 @@ public class SQLiteActivity extends AppCompatActivity {
         }
         db.close();
         myArrayAdapter.notifyDataSetChanged();
-        status = (TextView) findViewById(R.id.sqlite_status);
-        status.setText("Items = "+String.valueOf(count));
+//if(DEV_MODE)status = (TextView) findViewById(R.id.sqlite_status);
+//if(DEV_MODE)status.setText("Items = "+String.valueOf(count));
     }
 
     @Override
@@ -136,10 +136,10 @@ public class SQLiteActivity extends AppCompatActivity {
                 String text = "\n" + parent.toString() + "\n" + view.toString() + "\n" + position + "\n" + id;
                 //makeText(getApplicationContext(), "SQLite\nonItemClick" + text, LENGTH_LONG).show();
                 item=(Item) myListView.getItemAtPosition(position);
-                makeText(getApplicationContext(), "SQLite\nonItemClick\n" + item.id, LENGTH_LONG).show();
-                ///Intent i = new Intent(SQLiteActivity.this, EditItemActivity.class);
-                ///i.putExtra("id",item.id);
-                ///startActivity(i);
+if(DEV_MODE)makeText(getApplicationContext(), "SQLite\nonItemClick\n" + item.id, LENGTH_LONG).show();
+                Intent i = new Intent(SQLiteActivity.this, EditItemActivity.class);
+                i.putExtra("id",item.id);
+                startActivity(i);
             }
         });
         myArrayAdapter.notifyDataSetChanged();
@@ -171,11 +171,11 @@ class Holder {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
+/*
         Button button_sqlite_show_all=(Button)findViewById(R.id.button_sqlite_show_all);
         button_sqlite_show_all.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                /*
+          */      /*
                 int count = 0;
 
                 makeText(getApplicationContext(), "SQLite\nShow All", LENGTH_LONG).show();
@@ -195,6 +195,7 @@ class Holder {
                 status = (TextView) findViewById(R.id.sqlite_status);
                 status.setText("Items = "+String.valueOf(count));
                 */
+        /*
                 try {
                     showAll();
                 } catch (ParseException e) {
@@ -202,6 +203,7 @@ class Holder {
                 }
             }
         });
+        */
 
 
 
@@ -210,7 +212,7 @@ class Holder {
             public void onClick(View v) {
                 EditText title_text= (EditText) findViewById(R.id.title_edittext);
                 EditText content_text= (EditText) findViewById(R.id.content_edittext);
-                makeText(getApplicationContext(), "SQLite\nAdd item", LENGTH_LONG).show();
+if(DEV_MODE)makeText(getApplicationContext(), "SQLite\nAdd item", LENGTH_LONG).show();
                 db.open();
                 addItemId = db.addItem(title_text.getText().toString(),content_text.getText().toString());
                 db.close();
@@ -222,11 +224,11 @@ class Holder {
             }
         });
 
-
+/*
         Button button_sqlite_delete_all=(Button)findViewById(R.id.button_sqlite_delete_all);
         button_sqlite_delete_all.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                makeText(getApplicationContext(), "SQLite\nDelete all", LENGTH_LONG).show();
+if(DEV_MODE)makeText(getApplicationContext(), "SQLite\nDelete all", LENGTH_LONG).show();
                 db.open();
                 db.deleteAll();
                 db.close();
@@ -238,13 +240,13 @@ class Holder {
             }
         });
 
-
+*/
 
 
         db.open();
         Cursor c=db.showAll();
-        if (c.moveToFirst()) makeText(getApplicationContext(),"SQLite\nshowAll()>0", LENGTH_LONG).show();
-        else makeText(getApplicationContext(),"SQLite\nshowAll==0", LENGTH_LONG).show();
+        if (c.moveToFirst()) if(DEV_MODE)makeText(getApplicationContext(),"SQLite\nshowAll()>0", LENGTH_LONG).show();
+        else if(DEV_MODE)makeText(getApplicationContext(),"SQLite\nshowAll==0", LENGTH_LONG).show();
         db.close();
     }
 }
