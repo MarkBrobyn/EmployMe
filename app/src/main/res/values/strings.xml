@@ -10,7 +10,9 @@
     <string name="button_do">do</string>
     <string name="button_me">me</string>
     <string name="button_us">us</string>
-    <string name="button_..">...</string>
+    <string name="button_mo">...</string>
+    <string name="button_mdx">Middlesex University</string>
+    <string name="button_camera">Picture</string>
     <string name="enterTitle">Action...</string>
     <string name="enterContent">Reflection...</string>
     <string name="takePicture">Take Picture</string>

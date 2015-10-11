@@ -36,7 +36,7 @@ import static android.widget.Toast.makeText;
 
 public class DoActivity extends Activity  {
 
-    private boolean DEV_MODE=true;
+    private boolean DEV_MODE=false;
     TextView text;
 
     ListView myListView;
@@ -94,7 +94,7 @@ public class DoActivity extends Activity  {
                         String content = oneObject.getString("content");
                         String datetime = oneObject.getString("datetime");
                         String item=datetime+"\n"+title+"\n"+content;
-                        myArrayList.add(item);
+                        myArrayList.add(title);
                         if(DEV_MODE)Toast.makeText(getBaseContext(), item,Toast.LENGTH_SHORT).show();
                     } catch (JSONException e) {
                         // Oops
@@ -123,7 +123,7 @@ public class DoActivity extends Activity  {
                     */
 
                 //}
-                Toast.makeText(getBaseContext(), aJsonString,Toast.LENGTH_SHORT).show();
+                if(DEV_MODE)Toast.makeText(getBaseContext(), aJsonString,Toast.LENGTH_SHORT).show();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -154,13 +154,14 @@ public class DoActivity extends Activity  {
         myListView.setAdapter(myArrayAdapter);
         myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView parent, View view, int position, long id) {
-                /*
-                Item item=new Item();
-                String text = "\n" + parent.toString() + "\n" + view.toString() + "\n" + position + "\n" + id;
-                //makeText(getApplicationContext(), "SQLite\nonItemClick" + text, LENGTH_LONG).show();
-                item=(Item) myListView.getItemAtPosition(position);
-                */
+
+                //Item item=new Item();
+                //String text = "\n" + parent.toString() + "\n" + view.toString() + "\n" + position + "\n" + id;
+                //makeText(getApplicationContext(), text, LENGTH_LONG).show();
+                //item=(Item) myListView.getItemAtPosition(position);
+
                 if(DEV_MODE)makeText(getApplicationContext(), "DoActivity\nonItemClick\n", Toast.LENGTH_SHORT).show();
+                makeText(getApplicationContext(), "To be processed", Toast.LENGTH_SHORT).show();
                 /*
                 Intent i = new Intent(DoActivity.this, EditItemActivity.class);
                 i.putExtra("id",item.id);

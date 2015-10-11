@@ -15,19 +15,21 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import static android.widget.Toast.LENGTH_LONG;
 import static android.widget.Toast.makeText;
 
 public class EditItemActivity extends AppCompatActivity {
+    private boolean DEV_MODE=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_item);
         final String itemID = getIntent().getStringExtra("id");
-        makeText(getApplicationContext(), "EditItem\nonCreate\nitemID=" +itemID, LENGTH_LONG).show();
+if(DEV_MODE) makeText(getApplicationContext(), "EditItem\nonCreate\nitemID=" +itemID, LENGTH_LONG).show();
 
         TextView edit_item_datetime = (TextView) findViewById (R.id.edit_item_datetime);
         final TextView edit_item_title = (TextView) findViewById (R.id.edit_item_title);
@@ -41,7 +43,7 @@ public class EditItemActivity extends AppCompatActivity {
             +"\n"+c.getString(1)
             +"\n"+c.getString(2)
             +"\n"+c.getString(3);
-            makeText(getApplicationContext(),"EditItem\n_id="+itemID+" found:"+text, LENGTH_LONG).show();
+if(DEV_MODE) makeText(getApplicationContext(),"EditItem\n_id="+itemID+" found:"+text, LENGTH_LONG).show();
             edit_item_datetime.setText(c.getString(0));
             edit_item_title.setText(c.getString(1));
             edit_item_content.setText(c.getString(2));
@@ -71,18 +73,27 @@ public class EditItemActivity extends AppCompatActivity {
         button_edit_item_send.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 String[] to={""};
-                sendEmail(to,edit_item_title.getText().toString(),edit_item_content.getText().toString());
+                sendEmail(to, edit_item_title.getText().toString(), edit_item_content.getText().toString());
             }
         });
 
         Button button_edit_item_delete=(Button)findViewById(R.id.button_edit_item_delete);
         button_edit_item_delete.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                makeText(getApplicationContext(), "SQLite\nDelete Item\n"+itemID, LENGTH_LONG).show();
+if(DEV_MODE) makeText(getApplicationContext(), "SQLite\nDelete Item\n"+itemID, LENGTH_LONG).show();
                 db.open();
                 db.deleteItem(itemID);
                 db.close();
                 finish();
+            }
+        });
+
+        final FrameLayout pictureframe=(FrameLayout) findViewById(R.id.pictureframe);
+
+        pictureframe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
     }
