@@ -20,13 +20,13 @@
             android:layout_height="wrap_content">
             <Button
                 android:text="@string/buttonA"
+                android:id="@+id/button_do"
                 android:layout_width="@dimen/main_button"
                 android:layout_height="@dimen/main_button"
                 android:background="@drawable/button_round"
                 android:layout_margin="@dimen/main_button_round_margin"
                 android:textAllCaps="false"
                 android:textSize="24dp"
-                android:onClick="buttonClick"
                 />
             <Button
                 android:text="@string/button_me"

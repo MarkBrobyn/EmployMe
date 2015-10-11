@@ -58,7 +58,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
+        Button button_do=(Button)findViewById(R.id.button_do);
+        button_do.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                //status.setText("button_add_item");
+                //Intent i=new Intent("EditorActivity");
+                Intent i = new Intent(MainActivity.this, DoActivity.class);
+                startActivity(i);
+            }
+        });
     }
 
     @Override

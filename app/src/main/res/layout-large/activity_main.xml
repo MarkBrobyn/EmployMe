@@ -23,11 +23,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <Button
-                android:text="Button A"
+                android:text="@string/buttonA"
+                android:id="@+id/button_do"
                 android:layout_width="@dimen/main_button_large"
                 android:layout_height="@dimen/main_button_large"
                 android:background="@drawable/button_round"
                 android:layout_margin="@dimen/main_button_round_margin"
+                android:textAllCaps="false"
+                android:textSize="24dp"
                 android:onClick="buttonClick"
                 />
             <Button
@@ -51,6 +54,8 @@
                 android:layout_height="@dimen/main_button_large"
                 android:background="@drawable/button_round"
                 android:layout_margin="@dimen/main_button_round_margin"
+                android:textAllCaps="false"
+                android:textSize="24dp"
                 android:onClick="buttonClick"
                 />
             <Button
@@ -59,6 +64,8 @@
                 android:layout_height="@dimen/main_button_large"
                 android:background="@drawable/button_round"
                 android:layout_margin="@dimen/main_button_round_margin"
+                android:textAllCaps="false"
+                android:textSize="24dp"
                 android:onClick="buttonClick"
                 />
         </TableRow>
