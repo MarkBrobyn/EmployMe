@@ -8,14 +8,17 @@ package brobyn.com.employme;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import static android.widget.Toast.LENGTH_LONG;
@@ -23,6 +26,30 @@ import static android.widget.Toast.makeText;
 
 public class EditItemActivity extends AppCompatActivity {
     private boolean DEV_MODE=false;
+
+    static final int REQUEST_IMAGE_CAPTURE = 1;
+    ImageView myImageView;
+
+    public void takePhoto(View view){
+        dispatchTakePictureIntent();
+    }
+
+    private void dispatchTakePictureIntent() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            myImageView =(ImageView)findViewById(R.id.picture);
+            Bundle extras = data.getExtras();
+            Bitmap imageBitmap = (Bitmap) extras.get("data");
+            myImageView.setImageBitmap(imageBitmap);
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,14 +115,16 @@ if(DEV_MODE) makeText(getApplicationContext(), "SQLite\nDelete Item\n"+itemID, L
             }
         });
 
+        /**/
         final FrameLayout pictureframe=(FrameLayout) findViewById(R.id.pictureframe);
 
         pictureframe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                takePhoto(v);
             }
         });
+        /**/
     }
 
 
