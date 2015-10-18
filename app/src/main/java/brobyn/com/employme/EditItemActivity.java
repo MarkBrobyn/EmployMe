@@ -21,6 +21,8 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.ByteArrayOutputStream;
+
 import static android.widget.Toast.LENGTH_LONG;
 import static android.widget.Toast.makeText;
 
@@ -29,7 +31,7 @@ public class EditItemActivity extends AppCompatActivity {
 
     static final int REQUEST_IMAGE_CAPTURE = 1;
     ImageView myImageView;
-
+    Bitmap imageBitmap=null;
     public void takePhoto(View view){
         dispatchTakePictureIntent();
     }
@@ -46,7 +48,7 @@ public class EditItemActivity extends AppCompatActivity {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             myImageView =(ImageView)findViewById(R.id.picture);
             Bundle extras = data.getExtras();
-            Bitmap imageBitmap = (Bitmap) extras.get("data");
+            imageBitmap = (Bitmap) extras.get("data");
             myImageView.setImageBitmap(imageBitmap);
         }
     }
@@ -89,8 +91,18 @@ if(DEV_MODE) makeText(getApplicationContext(),"EditItem\n_id="+itemID+" found:"+
         Button button_edit_item_save=(Button)findViewById(R.id.button_edit_item_save);
         button_edit_item_save.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                byte[] imageBuffer=null;
+                if(imageBitmap!=null) {
+                  //// Bitmap image = BitmapFactory.decodeResource(getResources(), R.drawable.thumbnail);
+                  ByteArrayOutputStream out = new ByteArrayOutputStream();
+                  imageBitmap.compress(Bitmap.CompressFormat.PNG, 100, out);
+                  imageBuffer=out.toByteArray();
+                  //// ContentValues cv=new ContentValues();
+                  //// cv.put(CHUNK, buffer);
+                  //// long rawId=database.insert(TABLE, null, cv);
+                }
                 db.open();
-                db.updateItem(itemID, edit_item_title.getText().toString(), edit_item_content.getText().toString());
+                db.updateItem(itemID, edit_item_title.getText().toString(), edit_item_content.getText().toString(),imageBuffer);
                 db.close();
                 finish();
             }

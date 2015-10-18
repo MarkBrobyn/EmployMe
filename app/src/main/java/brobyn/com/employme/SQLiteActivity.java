@@ -214,7 +214,7 @@ class Holder {
                 EditText content_text= (EditText) findViewById(R.id.content_edittext);
 if(DEV_MODE)makeText(getApplicationContext(), "SQLite\nAdd item", LENGTH_LONG).show();
                 db.open();
-                addItemId = db.addItem(title_text.getText().toString(),content_text.getText().toString());
+                addItemId = db.addItem(title_text.getText().toString(),content_text.getText().toString(),null);
                 db.close();
                 try {
                     showAll();

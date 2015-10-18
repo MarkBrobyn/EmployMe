@@ -22,7 +22,7 @@ public class DataBaseHelper {
     DBHelper db;
     SQLiteDatabase myDataBase;
     //static final String DBCREATE="CREATE TABLE items (_id INTEGER PRIMARY KEY  NOT NULL, datetime DATETIME DEFAULT CURRENT_TIMESTAMP, title TEXT DEFAULT Title, content TEXT DEFAULT Content, picture BLOB DEFAULT null);";
-    static final String DBCREATE="CREATE TABLE items (datetime DATETIME DEFAULT CURRENT_TIMESTAMP, title TEXT DEFAULT Title, content TEXT DEFAULT Content, _id INTEGER PRIMARY KEY NOT NULL);";
+    static final String DBCREATE="CREATE TABLE items (datetime DATETIME DEFAULT CURRENT_TIMESTAMP, title TEXT DEFAULT Title, content TEXT DEFAULT Content, _id INTEGER PRIMARY KEY NOT NULL, picture BLOB DEFAULT NULL);";
 
     public DataBaseHelper(Context myContext) {
         this.context = myContext;
@@ -71,17 +71,19 @@ public class DataBaseHelper {
         myDataBase.delete("items",null, null);
     }
 
-    public long addItem(String title, String content) {
+    public long addItem(String title, String content, byte[] picture) {
         ContentValues initialValues=new ContentValues();
         initialValues.put("title",title);
         initialValues.put("content", content);
+        if(picture!=null)initialValues.put("picture",picture);
         return myDataBase.insert("items",null, initialValues);
     }
 
-    public boolean updateItem(String id, String title, String content) {
+    public boolean updateItem(String id, String title, String content, byte[] picture) {
         ContentValues values=new ContentValues();
         values.put("title",title);
         values.put("content", content);
+        values.put("picture",picture);
         return myDataBase.update("items",values,"_id="+id,null)>0;
     }
 
