@@ -9,6 +9,7 @@ package brobyn.com.employme;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -63,7 +64,8 @@ if(DEV_MODE) makeText(getApplicationContext(), "EditItem\nonCreate\nitemID=" +it
         TextView edit_item_datetime = (TextView) findViewById (R.id.edit_item_datetime);
         final TextView edit_item_title = (TextView) findViewById (R.id.edit_item_title);
         final TextView edit_item_content = (TextView) findViewById (R.id.edit_item_content);
-
+        final ImageView picture = (ImageView) findViewById (R.id.picture);
+        byte[] byteArray=null;
         final DataBaseHelper db=new DataBaseHelper(this);
         db.open();
         Cursor c=db.getItem(itemID);
@@ -76,6 +78,10 @@ if(DEV_MODE) makeText(getApplicationContext(),"EditItem\n_id="+itemID+" found:"+
             edit_item_datetime.setText(c.getString(0));
             edit_item_title.setText(c.getString(1));
             edit_item_content.setText(c.getString(2));
+            byteArray=c.getBlob(4);
+            if(byteArray!=null){
+                picture.setImageBitmap(BitmapFactory.decodeByteArray(byteArray,0,byteArray.length));
+            }
         }
         else makeText(getApplicationContext(),"EditItem\n_id="+itemID+" not found", LENGTH_LONG).show();
         db.close();
@@ -93,17 +99,18 @@ if(DEV_MODE) makeText(getApplicationContext(),"EditItem\n_id="+itemID+" found:"+
             public void onClick(View v) {
                 byte[] imageBuffer=null;
                 if(imageBitmap!=null) {
-                  //// Bitmap image = BitmapFactory.decodeResource(getResources(), R.drawable.thumbnail);
                   ByteArrayOutputStream out = new ByteArrayOutputStream();
                   imageBitmap.compress(Bitmap.CompressFormat.PNG, 100, out);
                   imageBuffer=out.toByteArray();
-                  //// ContentValues cv=new ContentValues();
-                  //// cv.put(CHUNK, buffer);
-                  //// long rawId=database.insert(TABLE, null, cv);
+                  db.open();
+                  db.updateItem(itemID, edit_item_title.getText().toString(), edit_item_content.getText().toString(),imageBuffer);
+                  db.close();
                 }
-                db.open();
-                db.updateItem(itemID, edit_item_title.getText().toString(), edit_item_content.getText().toString(),imageBuffer);
-                db.close();
+                else {
+                  db.open();
+                  db.updateItem(itemID, edit_item_title.getText().toString(), edit_item_content.getText().toString());
+                  db.close();
+                }
                 finish();
             }
         });

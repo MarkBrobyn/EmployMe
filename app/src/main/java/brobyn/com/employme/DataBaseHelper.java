@@ -87,9 +87,16 @@ public class DataBaseHelper {
         return myDataBase.update("items",values,"_id="+id,null)>0;
     }
 
+    public boolean updateItem(String id, String title, String content) {
+        ContentValues values=new ContentValues();
+        values.put("title",title);
+        values.put("content", content);
+        return myDataBase.update("items",values,"_id="+id,null)>0;
+    }
+
     public Cursor getItem(String id) throws SQLException {
         Cursor mCursor = myDataBase.query(true, "items",
-                new String[] {"datetime","title","content","_id"},
+                new String[] {"datetime","title","content","_id","picture"},
                 "_id="+id,
                 null,null,null,null,null);
         if(mCursor!=null) {mCursor.moveToFirst();}
