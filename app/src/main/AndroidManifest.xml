@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="brobyn.com.employme" >
+    package="brobyn.com.employme"
+    android:installLocation="auto"
+    >
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/em384"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
@@ -22,6 +24,7 @@
 
         <activity
             android:name=".SQLiteActivity"
+            android:windowSoftInputMode="stateHidden"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             >

@@ -146,18 +146,6 @@ if(DEV_MODE) makeText(getApplicationContext(), "SQLite\nDelete Item\n"+itemID, L
         /**/
     }
 
-
-
-
-
-/*
-    public void sendItem(View v){
-        String[] to={"apps@brobyn.com"};
-        //sendEmail(to,"Test","This is a test");
-
-        sendEmail("",edit_item_title.getText().toString(),edit_item_content.getText().toString());
-    }
-*/
     private void sendEmail(String[] emailAddresses, String subject, String message){
         Intent emailIntent = new Intent(Intent.ACTION_SEND);
         emailIntent.setData(Uri.parse("mailto:"));
@@ -167,6 +155,59 @@ if(DEV_MODE) makeText(getApplicationContext(), "SQLite\nDelete Item\n"+itemID, L
         emailIntent.putExtra(Intent.EXTRA_TEXT,message);
         emailIntent.setType("message/rfc822");
         startActivity(Intent.createChooser(emailIntent,"email"));
+
+        /*
+// http://stephendnicholas.com/archives/974
+public static void createCachedFile(Context context, String fileName,
+            String content) throws IOException {
+
+    File cacheFile = new File(context.getCacheDir() + File.separator
+                + fileName);
+    cacheFile.createNewFile();
+    cacheFile.setReadable(true, false);
+    FileOutputStream fos = new FileOutputStream(cacheFile);
+    OutputStreamWriter osw = new OutputStreamWriter(fos, "UTF8");
+    PrintWriter pw = new PrintWriter(osw);
+
+    pw.println(content);
+
+    pw.flush();
+    pw.close();
+
+    // shareIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(shareFile));
+}
+
+public static Intent getSendEmailIntent(Context context, String email,
+            String subject, String body, String fileName) {
+
+    final Intent emailIntent = new Intent(
+                android.content.Intent.ACTION_SEND);
+
+    //Explicitly only use Gmail to send
+    emailIntent.setClassName("com.google.android.gm","com.google.android.gm.ComposeActivityGmail");
+
+    emailIntent.setType("plain/text");
+    //shareIntent.setType(“application/zip”);
+
+    //Add the recipients
+    emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL,
+                new String[] { email });
+
+    emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, subject);
+
+    emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, body);
+
+    //Add the attachment by specifying a reference to our custom ContentProvider
+    //and the specific file of interest
+    emailIntent.putExtra(
+            Intent.EXTRA_STREAM,
+                Uri.parse("content://" + CachedFileProvider.AUTHORITY + "/"
+                        + fileName));
+    return emailIntent;
+}
+*/
+
+
     }
 
     @Override

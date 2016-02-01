@@ -7,4 +7,5 @@
     <dimen name="main_button_small">96dp</dimen>
     <dimen name="main_button_round_margin">12dp</dimen>
     <dimen name="main_button_width">120dp</dimen>
+    <dimen name="do_title_text">12dp</dimen>
 </resources>
