@@ -17,7 +17,9 @@
         android:lines="2"
         android:maxHeight="50dp"
         android:fadeScrollbars="false"
-        android:nestedScrollingEnabled="false" />
+        android:nestedScrollingEnabled="false"
+        android:inputType="textCapSentences"
+        />
 
     <EditText
         android:id="@+id/content_edittext"
@@ -25,6 +27,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="top"
+        android:inputType="textCapSentences"
         />
 
     <Button android:id="@+id/button_sqlite_add_item"

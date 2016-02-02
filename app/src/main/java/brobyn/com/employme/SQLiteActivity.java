@@ -29,7 +29,7 @@ public class SQLiteActivity extends AppCompatActivity {
 
     TextView status;
     private boolean DEV_MODE=false;
-
+    //public static final int RETURN_FROM_EDIT_ITEM = 1001;
     //private SQLiteDatabase db;
     DataBaseHelper db=new DataBaseHelper(this); //
 
@@ -83,7 +83,8 @@ if(DEV_MODE)makeText(getApplicationContext(), "SQLite\nShow All", LENGTH_LONG).s
                     e.printStackTrace();
                 }
                 itemDate=dateFormatter.format(date);
-                item.setTitle(itemDate + ": " + cursor.getString(1));
+                //item.setTitle(itemDate + ": " + cursor.getString(1));
+                item.setTitle(cursor.getString(1)+" ("+itemDate+")");
                 //item.setTitle(cursor.getString(0) + ": " + cursor.getString(1));
                 item.setID(cursor.getString(3));
                 myArrayList.add(0,item); // add to start of list
@@ -108,6 +109,20 @@ if(DEV_MODE)makeText(getApplicationContext(), "SQLite\nShow All", LENGTH_LONG).s
             e.printStackTrace();
         }
     }
+
+    /*
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        if(requestCode == RETURN_FROM_EDIT_ITEM){
+            // It came from our call
+            if(resultCode == RESULT_OK){
+                // The result was successful
+                //DoStuffLikeReloadingData(); // you can use the data returned by the Intent do figure out what to do
+                makeText(getApplicationContext(), "SQLite\nonActivityResult\n" + resultCode, LENGTH_LONG).show();
+            }
+        }
+    }
+    */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -140,6 +155,8 @@ if(DEV_MODE)makeText(getApplicationContext(), "SQLite\nonItemClick\n" + item.id,
                 Intent i = new Intent(SQLiteActivity.this, EditItemActivity.class);
                 i.putExtra("id",item.id);
                 startActivity(i);
+                //makeText(getApplicationContext(), "SQLite\\onCreate: returned from EditItemActivity", LENGTH_LONG).show();
+
             }
         });
         myArrayAdapter.notifyDataSetChanged();
@@ -216,11 +233,23 @@ if(DEV_MODE)makeText(getApplicationContext(), "SQLite\nAdd item", LENGTH_LONG).s
                 db.open();
                 addItemId = db.addItem(title_text.getText().toString(),content_text.getText().toString(),null);
                 db.close();
+                //makeText(getApplicationContext(), "SQLite\nAdd item _id="+addItemId, LENGTH_LONG).show();
+
+                ////
+                // going to call edit after adding above so lets clear out text entered so fields are clear on return from edit activity
+                title_text.setText("");
+                content_text.setText("");
+                Intent i = new Intent(SQLiteActivity.this, EditItemActivity.class);
+                i.putExtra("id", String.valueOf(addItemId));
+                startActivity(i);
+                //startActivityForResult(i,RETURN_FROM_EDIT_ITEM);
+                /*
                 try {
                     showAll();
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
+                */
             }
         });
 

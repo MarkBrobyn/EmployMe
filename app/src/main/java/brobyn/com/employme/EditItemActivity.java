@@ -59,7 +59,9 @@ public class EditItemActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_item);
         final String itemID = getIntent().getStringExtra("id");
-if(DEV_MODE) makeText(getApplicationContext(), "EditItem\nonCreate\nitemID=" +itemID, LENGTH_LONG).show();
+
+        if(DEV_MODE) makeText(getApplicationContext(), "EditItem\nonCreate\nitemID=" +itemID, LENGTH_LONG).show();
+        //makeText(getApplicationContext(), "EditItem\nonCreate\nitemID=" +itemID, LENGTH_LONG).show();
 
         TextView edit_item_datetime = (TextView) findViewById (R.id.edit_item_datetime);
         final TextView edit_item_title = (TextView) findViewById (R.id.edit_item_title);
@@ -114,6 +116,7 @@ if(DEV_MODE) makeText(getApplicationContext(),"EditItem\n_id="+itemID+" found:"+
                 finish();
             }
         });
+
 
         Button button_edit_item_send=(Button)findViewById(R.id.button_edit_item_send);
         button_edit_item_send.setOnClickListener(new View.OnClickListener() {
